@@ -60,15 +60,15 @@ RSpec.describe MoviesController, type: :controller do
     end
     describe "Get search" do
         it "searches similar movies" do
-            movie1 = Movie.create!(title: 'something', director: 'yiwei')
-            movie2 = Movie.create!(title: 'something2', director: 'yiwei')
-            get :search_directors, {:id => movie1.to_param}
-            expect(assigns(:movies)).to eq [movie1, movie2]
+            movie1 = Movie.create!(title: 'something', director: 'henry')
+            movie2 = Movie.create!(title: 'something2', director: 'henry')
+            get :same_director, {:id => movie1.to_param}
+            expect(assigns(:sim_movies)).to eq [movie1, movie2]
             expect(assigns(:movie)).to eq movie1
         end
         it "searches movies with no director" do
             movie1 = Movie.create!(title: 'something', director: '')
-            get :search_directors, {:id => movie1.to_param}
+            get :same_director, {:id => movie1.to_param}
             expect(assigns(:movie)).to eq movie1
             expect(flash[:notice]).to eq "'something' has no director info"
             expect(response).to redirect_to movies_path

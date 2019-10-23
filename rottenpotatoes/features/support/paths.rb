@@ -28,7 +28,7 @@ module NavigationHelpers
       
     when /^the Similar Movies page for "(.*)"/
       movie = Movie.where(title: $1).first
-      search_directors_path movie
+      same_director_path movie
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
